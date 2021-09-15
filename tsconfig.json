@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2021",
+        "lib": ["es2021"],
+        "sourceMap": true,
+        "declaration": true,
+        "outDir": "./dist",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        // "strictPropertyInitialization": false,
+        // "noUnusedLocals": true,
+        "baseUrl": ".",
+        // "typeRoots": ["src/utils/types", "node_modules/@types"],
+        "paths": {
+            "utils/*": ["./src/utils/*"],
+            "components/*": ["./src/components/*"],
+            "config/*": ["./src/config/*"],
+            "*": ["./src/*", "./tests/*"]
+        }
+    },
+    "exclude": ["node_modules", "./tests/**/*.ts"],
+    "include": ["./src/**/*.ts"]
+}

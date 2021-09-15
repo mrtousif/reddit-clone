@@ -1,0 +1,95 @@
+{
+    "name": "reddit-server",
+    "description": "A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL",
+    "version": "1.0.0",
+    "license": "MIT",
+    "user": "Tousif",
+    "main": "src/index.ts",
+    "scripts": {
+        "dev": "env-cmd -f ./.env.dev nodemon",
+        "dev2": "tsc-watch --onCompilationComplete tsc-alias --onSuccess \"env-cmd -f ./.env.dev node ./dist/index.js\"",
+        "gen-env-types": "gen-env-types .env.dev -o src/utils/types/env.d.ts -e .",
+        "start": "pnpm build && env-cmd -f ./.env.dev node dist/src/index.js",
+        "lint": "eslint src/**/*.ts",
+        "test": "env-cmd -f ./.env.test pnpm lint && ts-jest ./tests/**/*.test.ts --package package.json",
+        "loadFixtures": "pnpm test --grep \"should clear database and load fixtures\"",
+        "gen-migrations": "env-cmd -f ./.env.dev mikro-orm migration:create",
+        "build": "tsc & tsc-alias"
+    },
+    "dependencies": {
+        "@gquittet/graceful-server": "^2.5.1",
+        "@jenyus-org/graphql-utils": "^1.5.0",
+        "@keycloak/keycloak-admin-client": "^15.0.2",
+        "@mikro-orm/cli": "^4.5.7",
+        "@mikro-orm/core": "^4.5.7",
+        "@mikro-orm/mongodb": "^4.5.9",
+        "@mikro-orm/reflection": "^4.5.7",
+        "argon2": "^0.28.2",
+        "class-validator": "^0.13.1",
+        "elastic-apm-node": "^3.20.0",
+        "env-cmd": "^10.1.0",
+        "envalid": "^7.1.1",
+        "fastify": "^3.19.2",
+        "fastify-auth": "^1.1.0",
+        "fastify-keycloak": "^0.2.0",
+        "fastify-plugin": "^3.0.0",
+        "fastify-print-routes": "^0.4.1",
+        "fastify-secure-session": "^2.3.1",
+        "gen-env-types": "^1.3.0",
+        "got": "^11.8.2",
+        "graphql": "^15.5.1",
+        "hyperid": "^2.3.1",
+        "keycloak-connect": "^15.0.2",
+        "lodash-es": "^4.17.21",
+        "luxon": "^2.0.2",
+        "mercurius": "^8.1.0",
+        "mercurius-upload": "^2.0.0",
+        "middie": "^5.3.0",
+        "openid-client": "^4.7.5",
+        "reflect-metadata": "^0.1.13",
+        "signale": "^1.4.0",
+        "tsconfig-paths": "^3.10.1",
+        "type-graphql": "^1.1.1",
+        "url-join": "^4.0.1"
+    },
+    "devDependencies": {
+        "@mgcrea/pino-pretty-compact": "^0.5.0",
+        "@types/connect": "^3.4.35",
+        "@types/faker": "^5.5.7",
+        "@types/jest": "^26.0.24",
+        "@types/node": "^16.4.1",
+        "@types/supertest": "^2.0.11",
+        "@types/url-join": "^4.0.1",
+        "@typescript-eslint/eslint-plugin": "^4.28.4",
+        "@typescript-eslint/parser": "^4.28.4",
+        "eslint": "^7.31.0",
+        "eslint-config-alloy": "^4.1.0",
+        "faker": "^5.5.3",
+        "supertest": "^6.1.4",
+        "ts-eager": "^2.0.2",
+        "ts-node": "^10.1.0",
+        "tsc-alias": "^1.3.7",
+        "tsc-watch": "^4.4.0",
+        "typescript": "^4.3.5"
+    },
+    "mikro-orm": {
+        "useTsNode": true,
+        "configPaths": [
+            "./src/orm.config.ts"
+        ]
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src"
+        ],
+        "ignore": [
+            "src/**/*.test.ts"
+        ],
+        "ext": "ts,mjs,js,json,graphql",
+        "exec": "node -r ts-eager/register ./src/index.ts",
+        "legacyWatch": true
+    }
+}
