@@ -19,6 +19,7 @@
             "utils/*": ["./src/utils/*"],
             "components/*": ["./src/components/*"],
             "config/*": ["./src/config/*"],
+            "@/*": ["./src/*"],
             "*": ["./src/*", "./tests/*"]
         }
     },

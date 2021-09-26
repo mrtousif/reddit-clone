@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import Application from "./application";
-// require('elastic-apm-node').start()
 
 process.on("uncaughtException", (e) => {
     console.error(e);

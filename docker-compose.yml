@@ -1,0 +1,97 @@
+version: "3"
+
+services:
+    # mongo:
+    #     image: mongo:5
+    #     # restart: unless-stopped
+    #     volumes:
+    #         - mongo_data:/data/db
+    #     ports:
+    #         - "27017:27017"
+    #     environment:
+    #         MONGO_INITDB_ROOT_USERNAME: root
+    #         MONGO_INITDB_ROOT_PASSWORD: mongo
+    #         MONGO_INITDB_DATABASE: reddit
+
+    postgres:
+        image: postgres:13
+        # restart: unless-stopped
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: keycloak_db
+            POSTGRES_USER: keycloak_user
+            POSTGRES_PASSWORD: keycloak_pass
+
+    keycloak:
+        image: quay.io/keycloak/keycloak:15.0.2
+        # restart: unless-stopped
+        ports:
+            - 8080:8080
+        depends_on:
+            - postgres
+        command:
+            - "-Dkeycloak.profile.feature.upload_scripts=enabled"
+        environment:
+            DB_VENDOR: POSTGRES
+            DB_ADDR: postgres
+            DB_DATABASE: keycloak_db
+            DB_USER: keycloak_user
+            DB_SCHEMA: public
+            DB_PASSWORD: keycloak_pass
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: admin_pass
+
+    graphql-engine:
+        image: hasura/graphql-engine:v2.0.9
+        # restart: unless-stopped
+        ports:
+            - "9090:8080"
+        depends_on:
+            - "postgres"
+        environment:
+            ## postgres database to store Hasura metadata
+            HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://keycloak_user:keycloak_pass@postgres:5432/keycloak_db
+            ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+            PG_DATABASE_URL: postgres://keycloak_user:keycloak_pass@postgres:5432/keycloak_db
+            ## enable the console served by server
+            HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+            ## enable debugging mode. It is recommended to disable this in production
+            HASURA_GRAPHQL_DEV_MODE: "true"
+            HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+            ## uncomment next line to set an admin secret
+            # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+
+    # redis:
+    #     image: "redis:6-alpine"
+    #     restart: unless-stopped
+    #     ports:
+    #         - "6379:6379"
+    #     networks:
+    #         - reddit-clone
+    # caddy:
+    #     image: caddy/caddy:2-alpine
+    #     container_name: caddy-service
+    #     restart: unless-stopped
+    #     ports:
+    #         - "80:80"
+    #         - "443:443"
+    #     volumes:
+    #         - $PWD/Caddyfile:/etc/caddy/Caddyfile
+    #         - $PWD/site:/srv
+    #         - caddy-data:/data
+    #         - caddy-config:/config
+
+networks:
+    reddit-clone:
+        driver: bridge
+
+volumes:
+    mongo_data:
+        driver: local
+    postgres_data:
+        driver: local
+    # caddy-config:
+    #     driver: local

@@ -1,4 +1,5 @@
 .pnpm-store
+temp*
 secret*
 # Logs
 logs

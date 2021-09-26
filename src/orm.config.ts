@@ -13,7 +13,7 @@ export const ormConfig: Options = {
     port: config.mongo.port,
     type: "mongo",
     debug: config.env.isDev,
-    // tsNode: process.env.NODE_DEV === "true",
+    tsNode: Boolean(process.env.NODE_DEV),
     // namingStrategy: EntityCaseNamingStrategy,
     // migrations: {
     //     path: "./src/migrations",

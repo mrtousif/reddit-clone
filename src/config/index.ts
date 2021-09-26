@@ -5,6 +5,7 @@ const env = cleanEnv(process.env, {
         choices: ["development", "test", "production", "staging"],
     }),
     API_PORT: port({ default: 6000 }),
+    VAULT_ADDR: url({ default: "http://127.0.0.1:8200" }),
     DOMAIN: url({ default: "http://localhost" }),
     BASE_URL: url({ default: "http://localhost:3000" }),
     ADMIN_EMAIL: email({ default: "admin@example.com" }),
@@ -18,6 +19,7 @@ const env = cleanEnv(process.env, {
     MONGO_HOST: str({ default: "localhost" }),
     MONGO_PORT: port({ default: 27017 }),
     MONGO_DB: str({ default: "test_db" }),
+    REDIS_HOST: str({ default: "redis://127.0.0.1" }),
     TOKEN_SECRET: str({ default: "definitely_not_a_secret_string" }),
 });
 

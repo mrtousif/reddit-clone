@@ -1,8 +1,8 @@
-import { MikroORM } from "@mikro-orm/core";
-import ormConfig from "../orm.config";
+import { MikroORM, IDatabaseDriver, Connection } from "@mikro-orm/core";
+import ormConfig from "./orm.config";
 // import logger from "signale";
 
-export const databaseService = async () => {
+export const connectDatabase = async (): Promise<MikroORM<IDatabaseDriver<Connection>>> => {
     const orm = await MikroORM.init(ormConfig);
     // const migrator = orm.getMigrator();
     // const migrations = await migrator.getPendingMigrations();
@@ -12,4 +12,4 @@ export const databaseService = async () => {
     return orm;
 };
 
-export default databaseService;
+export default connectDatabase;
