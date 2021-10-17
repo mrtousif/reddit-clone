@@ -98,7 +98,7 @@ export default class Application {
 
     private async initializeGraphql() {
         const schema: GraphQLSchema = await buildSchema({
-            resolvers: [__dirname + "/**/*.resolver.{ts,js}"],
+            resolvers: [`${__dirname}/**/*.resolver.{ts,js}`],
             dateScalarMode: "isoDate",
         });
 
