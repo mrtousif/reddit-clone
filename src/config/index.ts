@@ -14,11 +14,6 @@ const env = cleanEnv(process.env, {
     POSTGRES_HOST: str({ default: "localhost" }),
     POSTGRES_PORT: port({ default: 5432 }),
     POSTGRES_DB: str({ default: "test_db" }),
-    MONGO_USER: str({ default: "mongo" }),
-    MONGO_PASSWORD: str({ default: "mongo" }),
-    MONGO_HOST: str({ default: "localhost" }),
-    MONGO_PORT: port({ default: 27017 }),
-    MONGO_DB: str({ default: "test_db" }),
     REDIS_HOST: str({ default: "redis://127.0.0.1" }),
     TOKEN_SECRET: str({ default: "definitely_not_a_secret_string" }),
 });
@@ -36,13 +31,6 @@ export default {
         host: env.POSTGRES_HOST,
         port: env.POSTGRES_PORT,
         dbName: env.POSTGRES_DB,
-    },
-    mongo: {
-        user: env.MONGO_USER,
-        password: env.MONGO_PASSWORD,
-        host: env.MONGO_HOST,
-        port: env.MONGO_PORT,
-        dbName: env.MONGO_DB,
     },
     keycloak: {
         public: "https://localhost:6000",

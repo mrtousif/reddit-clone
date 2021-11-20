@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import Application from "./application";
+import Application from "@/application";
 
 process.on("uncaughtException", (e) => {
     console.error(e);

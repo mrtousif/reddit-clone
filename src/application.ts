@@ -8,7 +8,6 @@ import mercuriusUpload from "mercurius-upload";
 import fastifySecureSession from "fastify-secure-session";
 import fastifyRedis from "fastify-redis";
 import prettifier from "@mgcrea/pino-pretty-compact";
-import printRoutes from "fastify-print-routes";
 import GracefulServer from "@gquittet/graceful-server";
 import metricsPlugin from "fastify-metrics";
 
@@ -17,11 +16,13 @@ import { GraphQLSchema } from "graphql";
 import { buildSchema, registerEnumType } from "type-graphql";
 import nodeVault from "node-vault";
 
-import { getContext } from "./utils/interfaces/context.interface";
-import { PublisherType } from "./components/Publisher/publisherType.enum";
-import config from "./config";
-import connectDatabase from "./connectDatabase";
+import { getContext } from "@/utils/interfaces/context.interface";
+import { PublisherType } from "@/components/Publisher/publisherType.enum";
+import config from "@/config";
+import connectDatabase from "@/connectDatabase";
 import authService from "@/services/auth.service";
+
+const _importDynamic = new Function("modulePath", "return import(modulePath)");
 
 // TODO: create service for this
 registerEnumType(PublisherType, {
@@ -73,7 +74,6 @@ export default class Application {
                 // options for setCookie, see https://github.com/fastify/fastify-cookie
             },
         });
-        this.instance.register(printRoutes);
         this.instance.register(metricsPlugin, { endpoint: "/metrics" });
         // this.instance.register(authService);
 
@@ -85,7 +85,8 @@ export default class Application {
     public async init() {
         await this.initializeGraphql();
         this.orm = await connectDatabase();
-
+        const fastifyPrintRoutes = await _importDynamic("fastify-print-routes");
+        this.instance.register(fastifyPrintRoutes);
         this.instance.listen(this.appPort, (error) => {
             if (error) {
                 this.orm.close();

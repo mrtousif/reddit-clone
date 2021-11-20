@@ -1,18 +1,6 @@
 version: "3"
 
 services:
-    # mongo:
-    #     image: mongo:5
-    #     # restart: unless-stopped
-    #     volumes:
-    #         - mongo_data:/data/db
-    #     ports:
-    #         - "27017:27017"
-    #     environment:
-    #         MONGO_INITDB_ROOT_USERNAME: root
-    #         MONGO_INITDB_ROOT_PASSWORD: mongo
-    #         MONGO_INITDB_DATABASE: reddit
-
     postgres:
         image: postgres:13
         # restart: unless-stopped
@@ -24,25 +12,6 @@ services:
             POSTGRES_DB: keycloak_db
             POSTGRES_USER: keycloak_user
             POSTGRES_PASSWORD: keycloak_pass
-
-    keycloak:
-        image: quay.io/keycloak/keycloak:15.0.2
-        # restart: unless-stopped
-        ports:
-            - 8080:8080
-        depends_on:
-            - postgres
-        command:
-            - "-Dkeycloak.profile.feature.upload_scripts=enabled"
-        environment:
-            DB_VENDOR: POSTGRES
-            DB_ADDR: postgres
-            DB_DATABASE: keycloak_db
-            DB_USER: keycloak_user
-            DB_SCHEMA: public
-            DB_PASSWORD: keycloak_pass
-            KEYCLOAK_USER: admin
-            KEYCLOAK_PASSWORD: admin_pass
 
     graphql-engine:
         image: hasura/graphql-engine:v2.0.9
@@ -71,18 +40,6 @@ services:
     #         - "6379:6379"
     #     networks:
     #         - reddit-clone
-    # caddy:
-    #     image: caddy/caddy:2-alpine
-    #     container_name: caddy-service
-    #     restart: unless-stopped
-    #     ports:
-    #         - "80:80"
-    #         - "443:443"
-    #     volumes:
-    #         - $PWD/Caddyfile:/etc/caddy/Caddyfile
-    #         - $PWD/site:/srv
-    #         - caddy-data:/data
-    #         - caddy-config:/config
 
 networks:
     reddit-clone:

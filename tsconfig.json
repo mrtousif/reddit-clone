@@ -11,6 +11,7 @@
         "emitDecoratorMetadata": true,
         "esModuleInterop": true,
         "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         // "strictPropertyInitialization": false,
         // "noUnusedLocals": true,
         "baseUrl": ".",
@@ -18,9 +19,7 @@
         "paths": {
             "utils/*": ["./src/utils/*"],
             "components/*": ["./src/components/*"],
-            "config/*": ["./src/config/*"],
-            "@/*": ["./src/*"],
-            "*": ["./src/*", "./tests/*"]
+            "@/*": ["./src/*"]
         }
     },
     "exclude": ["node_modules", "./tests/**/*.ts"],

@@ -1,10 +1,10 @@
+import { Arg, Ctx, Info, Mutation, Query, Resolver } from "type-graphql";
+import { GraphQLResolveInfo } from "graphql";
 import PostValidator from "components/Post/post.validator";
 import { User } from "components/User/user.entity";
 import { Post } from "components/Post/post.entity";
-// import { Publisher } from "components/Publisher/publisher.entity";
-import { GraphQLResolveInfo } from "graphql";
 import { fieldsToRelations, getFields } from "utils/helpers/graphqlFieldsToRelations";
-import { Arg, Ctx, Info, Mutation, Query, Resolver } from "type-graphql";
+
 import { MyContext } from "utils/interfaces/context.interface";
 
 @Resolver(() => Post)

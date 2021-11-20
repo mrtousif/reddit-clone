@@ -1,5 +1,5 @@
 import http from "http";
-import config from "config";
+import config from "@/config";
 
 const options = {
     timeout: 2000,
