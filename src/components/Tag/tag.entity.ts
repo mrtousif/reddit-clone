@@ -2,7 +2,7 @@ import { Collection, Entity, ManyToMany, Property } from "@mikro-orm/core";
 import TagValidator from "components/Tag/tag.validator";
 import { Post } from "components/Post/post.entity";
 import { Field, ObjectType } from "type-graphql";
-import { Base } from "utils/entities/base.entity";
+import { Base } from "components/base.entity";
 
 @ObjectType()
 @Entity()

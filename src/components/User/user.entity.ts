@@ -10,7 +10,7 @@ import {
 } from "@mikro-orm/core";
 import UserValidator from "components/User/user.validator";
 import { Field, ObjectType } from "type-graphql";
-import { Base } from "utils/entities/base.entity";
+import { Base } from "components/base.entity";
 import { Post } from "components/Post";
 import * as argon2 from "argon2";
 

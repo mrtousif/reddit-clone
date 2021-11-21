@@ -15,6 +15,7 @@ dependencies:
   fastify-plugin: 3.0.0
   fastify-print-routes: 1.0.2
   fastify-redis: 4.3.3
+  fastify-request-context: 2.2.0_fastify@3.24.0
   fastify-secure-session: 3.0.0
   gen-env-types: 1.3.0
   gotql: 2.1.0-alpha1
@@ -29,7 +30,9 @@ dependencies:
   openid-client: 5.0.2
   reflect-metadata: 0.1.13
   tsconfig-paths: 3.12.0
+  type-events: 1.0.0-beta.0_reflect-metadata@0.1.13
   type-graphql: 1.1.1_2178bf335ffb2e82598d161d5f6721bc
+  typedi: 0.10.0
 devDependencies:
   '@mgcrea/pino-pretty-compact': 0.5.0
   '@types/connect': 3.4.35
@@ -1069,6 +1072,22 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==
+  /async-hook-jl/1.7.6:
+    dependencies:
+      stack-chain: 1.3.7
+    dev: false
+    engines:
+      node: ^4.7 || >=6.9 || >=7.3
+    resolution:
+      integrity: sha512-gFaHkFfSxTjvoxDMYqDuGHlcRyUuamF8s+ZTtJdDzqjws4mCt7v0vuV79/E2Wr2/riMQgtG4/yUtXWs1gZ7JMg==
+  /asynchronous-local-storage/1.0.2:
+    dependencies:
+      cls-hooked: 4.2.2
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-VEsn1B7dfxb2x8sl0fruvHnPj7xUFEfRQSQapnPvI5H3b0GeRVnoI3MRKj6h9upC4ltVKoAvVWusPv7rMCXiaA==
   /asynckit/0.4.0:
     resolution:
       integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=
@@ -1367,6 +1386,16 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+  /cls-hooked/4.2.2:
+    dependencies:
+      async-hook-jl: 1.7.6
+      emitter-listener: 1.1.2
+      semver: 5.7.1
+    dev: false
+    engines:
+      node: ^4.7 || >=6.9 || >=7.3 || >=8.2.1
+    resolution:
+      integrity: sha512-J4Xj5f5wq/4jAvcdgoGsL3G103BtWpZrMo8NEinRltN+xpTZdI+M38pyQqhuFU/P792xkMFvnKSf+Lm81U1bxw==
   /cluster-key-slot/1.1.0:
     dev: false
     engines:
@@ -1713,6 +1742,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+  /emitter-listener/1.1.2:
+    dependencies:
+      shimmer: 1.2.1
+    dev: false
+    resolution:
+      integrity: sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==
   /emoji-regex/8.0.0:
     dev: false
     resolution:
@@ -2173,6 +2208,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-E9OP1QSL6i/wWIOwRmSlJd7vBmTmOpSqQjvk4+SQTZ5VMBS7ANpZj+nSRm0F8MIDQFLIsTSUE7ozHibDt22R2g==
+  /fastify-request-context/2.2.0_fastify@3.24.0:
+    dependencies:
+      asynchronous-local-storage: 1.0.2
+      fastify: 3.24.0
+      fastify-plugin: 3.0.0
+    dev: false
+    engines:
+      node: '>=10.16.0'
+    peerDependencies:
+      fastify: ^3.0.0
+    resolution:
+      integrity: sha512-9TSc26uhJsbVwu442Ziolxs/+CZllusDDra+iHDuPH3DAJvJoHbjm4TaZNw3YbkNl96a5ShRY+XcZBc0VTZMzg==
   /fastify-secure-session/3.0.0:
     dependencies:
       fastify-cookie: 5.3.2
@@ -4703,6 +4750,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TcZvGMMy9vodEFSse30lWinkj+JgOBvPn8wRItpQRSayhc+4ssDs335uklkfvQQJgL/WvmHLVj4Ycv2s7QCQMg==
+  /semver/5.7.1:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
   /semver/6.3.0:
     dev: false
     hasBin: true
@@ -4775,6 +4827,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
+  /shimmer/1.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
   /side-channel/1.0.4:
     dependencies:
       call-bind: 1.0.2
@@ -4937,6 +4993,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-HXXqVUq7+pcKeLqqZj6mHFUMvXtOJt1uoUx09pFW6011inTMxqI8BA8PM95myrIyyKwdnzjdFjLiE6KBPVtJIg==
+  /stack-chain/1.3.7:
+    dev: false
+    resolution:
+      integrity: sha1-0ZLJ/06moiyUxN1FkXHj8AzqEoU=
   /standard-as-callback/2.1.0:
     dev: false
     resolution:
@@ -5349,6 +5409,14 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==
+  /type-events/1.0.0-beta.0_reflect-metadata@0.1.13:
+    dependencies:
+      reflect-metadata: 0.1.13
+    dev: false
+    peerDependencies:
+      reflect-metadata: ^0.1.13
+    resolution:
+      integrity: sha512-LmIbuGZYrNEOoElwYN3K1vn7z9FN//1etop5g1iI+KTiVY11Lu5KJXpyhRYWl/x4a+vh3AaWy27JcrajNcs/Nw==
   /type-fest/0.20.2:
     dev: true
     engines:
@@ -5376,6 +5444,10 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-iOOWVn0ehCYMukmnXStbkRwFE9dcjt7/oDcBS1JyQZo9CbhlIll4lHHps54HMEk4A4c8bUPd+DjK8w1/ZrxB4A==
+  /typedi/0.10.0:
+    dev: false
+    resolution:
+      integrity: sha512-v3UJF8xm68BBj6AF4oQML3ikrfK2c9EmZUyLOfShpJuItAqVBHWP/KtpGinkSsIiP6EZyyb6Z3NXyW9dgS9X1w==
   /typescript/4.5.2:
     dev: true
     engines:
@@ -5681,6 +5753,7 @@ specifiers:
   fastify-plugin: ^3.0.0
   fastify-print-routes: ^1.0.2
   fastify-redis: ^4.3.3
+  fastify-request-context: ^2.2.0
   fastify-secure-session: ^3.0.0
   gen-env-types: ^1.3.0
   gotql: ^2.1.0-alpha1
@@ -5700,5 +5773,7 @@ specifiers:
   tsc-alias: ^1.4.1
   tsc-watch: ^4.5.0
   tsconfig-paths: ^3.12.0
+  type-events: ^1.0.0-beta.0
   type-graphql: ^1.1.1
+  typedi: ^0.10.0
   typescript: ^4.4.0

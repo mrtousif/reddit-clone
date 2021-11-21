@@ -1,9 +1,12 @@
+import { Arg, Ctx, Info, Mutation, Query, Resolver } from "type-graphql";
+import { Service } from "typedi";
 import UserValidator from "components/User/user.validator";
 import { User } from "components/User/user.entity";
 import { GraphQLResolveInfo } from "graphql";
 import { fieldsToRelations } from "utils/helpers/graphqlFieldsToRelations";
-import { Arg, Ctx, Info, Mutation, Query, Resolver } from "type-graphql";
 import { MyContext } from "utils/interfaces/context.interface";
+
+@Service()
 @Resolver(() => User)
 export class UserResolver {
     @Query(() => [User])

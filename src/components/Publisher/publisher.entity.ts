@@ -3,7 +3,7 @@ import { PublisherType } from "components/Publisher/publisherType.enum";
 import { PublisherValidator } from "components/Publisher/publisher.validator";
 import { Post } from "components/Post/post.entity";
 import { Field, ObjectType } from "type-graphql";
-import { Base } from "utils/entities/base.entity";
+import { Base } from "components/base.entity";
 
 @ObjectType()
 @Entity()

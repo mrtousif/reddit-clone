@@ -4,7 +4,7 @@ import { User } from "components/User";
 import { Publisher } from "components/Publisher/publisher.entity";
 import { Tag } from "components/Tag/tag.entity";
 import { Field, ObjectType } from "type-graphql";
-import { Base } from "utils/entities/base.entity";
+import { Base } from "components/base.entity";
 
 @ObjectType()
 @Entity()

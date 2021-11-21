@@ -7,6 +7,7 @@ import mercurius from "mercurius";
 import mercuriusUpload from "mercurius-upload";
 import fastifySecureSession from "fastify-secure-session";
 import fastifyRedis from "fastify-redis";
+import { fastifyRequestContextPlugin } from "fastify-request-context";
 import prettifier from "@mgcrea/pino-pretty-compact";
 import GracefulServer from "@gquittet/graceful-server";
 import metricsPlugin from "fastify-metrics";
@@ -14,6 +15,7 @@ import metricsPlugin from "fastify-metrics";
 import { Connection, IDatabaseDriver, MikroORM } from "@mikro-orm/core";
 import { GraphQLSchema } from "graphql";
 import { buildSchema, registerEnumType } from "type-graphql";
+import { Container } from "typedi";
 import nodeVault from "node-vault";
 
 import { getContext } from "@/utils/interfaces/context.interface";
@@ -75,6 +77,12 @@ export default class Application {
             },
         });
         this.instance.register(metricsPlugin, { endpoint: "/metrics" });
+        this.instance.register(fastifyRequestContextPlugin, {
+            hook: "preValidation",
+            defaultStoreValues: {
+                user: { id: "system" },
+            },
+        });
         // this.instance.register(authService);
 
         this.gracefulServer = GracefulServer(this.instance.server);
@@ -101,6 +109,7 @@ export default class Application {
         const schema: GraphQLSchema = await buildSchema({
             resolvers: [__dirname + "/**/*.resolver.{ts,js}"],
             dateScalarMode: "isoDate",
+            container: Container,
         });
 
         this.instance.register(mercurius, {
