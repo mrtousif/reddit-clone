@@ -34,5 +34,6 @@ export default {
     },
     keycloak: {
         public: "https://localhost:6000",
+        admin: "https://localhost:8080"
     },
 };

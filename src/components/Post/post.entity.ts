@@ -1,5 +1,5 @@
 import { Cascade, Collection, Entity, ManyToMany, ManyToOne, Property } from "@mikro-orm/core";
-import PostValidator from "./post.validator";
+import PostValidator from "components/Post/post.validator";
 import { User } from "components/User";
 import { Publisher } from "components/Publisher/publisher.entity";
 import { Tag } from "components/Tag/tag.entity";

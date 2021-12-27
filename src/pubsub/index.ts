@@ -1,5 +1,6 @@
 import { EventDispatcher, On } from "type-events";
 import { Container } from "typedi";
+// import events from "./events";
 
 class Conversion {
     constructor(public userAgent: string, public revenue: number) {}

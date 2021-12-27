@@ -26,6 +26,8 @@ import authService from "@/services/auth.service";
 
 const _importDynamic = new Function("modulePath", "return import(modulePath)");
 
+// const __dirname = path.resolve();
+
 // TODO: create service for this
 registerEnumType(PublisherType, {
     name: "PublisherType",
@@ -40,18 +42,18 @@ const vault = nodeVault({
 });
 
 // init vault server
-vault
-    .init({ secret_shares: 1, secret_threshold: 1 })
-    .then((result) => {
-        const keys = result.keys;
-        // set token for all following requests
-        vault.token = result.root_token;
-        // unseal vault server
-        return vault.unseal({ secret_shares: 1, key: keys[0] });
-    })
-    .catch(console.error);
+// vault
+//     .init({ secret_shares: 1, secret_threshold: 1 })
+//     .then((result) => {
+//         const keys = result.keys;
+//         // set token for all following requests
+//         vault.token = result.root_token;
+//         // unseal vault server
+//         return vault.unseal({ secret_shares: 1, key: keys[0] });
+//     })
+//     .catch(console.error);
 
-export default class Application {
+export class Application {
     public instance: FastifyInstance;
     public orm!: MikroORM<IDatabaseDriver<Connection>>;
     public server!: Server;
@@ -146,3 +148,5 @@ export default class Application {
         });
     }
 }
+
+export default Application;

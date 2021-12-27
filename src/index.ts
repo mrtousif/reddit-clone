@@ -1,5 +1,8 @@
 import "reflect-metadata";
-import Application from "@/application";
+// import { replaceTscAliasPaths } from "tsc-alias";
+import { Application } from "@/application";
+
+// replaceTscAliasPaths();
 
 process.on("uncaughtException", (e) => {
     console.error(e);

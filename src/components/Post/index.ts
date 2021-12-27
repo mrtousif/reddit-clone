@@ -1,3 +1,3 @@
-export * from "./post.entity";
-export * from "./post.resolver";
-export * from "./post.validator";
+export * from "components/Post/post.entity";
+export * from "components/Post/post.resolver";
+export * from "components/Post/post.validator";
