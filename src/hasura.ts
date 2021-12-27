@@ -1,4 +1,5 @@
 import gotQL from "gotql";
+import config from "@/config";
 
 const query = {
     operation: {
@@ -16,6 +17,6 @@ const options = {
 };
 
 gotQL
-    .query("mygraphqlendpoint.com.br/api", query, options)
+    .query(config.env.HASURA_URL, query, options)
     .then((response) => console.log(response.data))
     .catch(console.error);

@@ -1,13 +1,14 @@
-import { cleanEnv, str, email, port, url } from "envalid";
+import { cleanEnv, str, email, port, bool, url } from "envalid";
 
 const env = cleanEnv(process.env, {
     NODE_ENV: str({
         choices: ["development", "test", "production", "staging"],
     }),
+    NODE_DEV: bool({ default: false }),
     API_PORT: port({ default: 6000 }),
     VAULT_ADDR: url({ default: "http://127.0.0.1:8200" }),
     DOMAIN: url({ default: "http://localhost" }),
-    BASE_URL: url({ default: "http://localhost:3000" }),
+    HASURA_URL: url({ default: "http://localhost:8083" }),
     ADMIN_EMAIL: email({ default: "admin@example.com" }),
     POSTGRES_USER: str({ default: "postgres" }),
     POSTGRES_PASSWORD: str({ default: "postgres" }),
@@ -20,7 +21,6 @@ const env = cleanEnv(process.env, {
 
 export default {
     env,
-    baseUrl: env.BASE_URL,
     api: {
         domain: env.DOMAIN,
         port: env.API_PORT,
@@ -34,6 +34,6 @@ export default {
     },
     keycloak: {
         public: "https://localhost:6000",
-        admin: "https://localhost:8080"
+        admin: "https://localhost:8082",
     },
 };
