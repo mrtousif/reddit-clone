@@ -14,7 +14,8 @@
         "loadFixtures": "pnpm test --grep \"should clear database and load fixtures\"",
         "gen-migrations": "env-cmd -f ./.env.dev mikro-orm migration:create",
         "build": "tsc && tsc-alias",
-        "compose:up": "docker-compose --env-file ./.env.dev up"
+        "compose:up": "docker-compose --env-file ./.env.dev up",
+        "compose:down": "docker-compose --env-file ./.env.dev down --remove-orphans"
     },
     "dependencies": {
         "@gquittet/graceful-server": "^2.5.2",

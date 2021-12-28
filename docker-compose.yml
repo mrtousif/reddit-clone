@@ -4,69 +4,46 @@ volumes:
     postgres_data:
         driver: local
 
-# networks:
-#     traefik:
-#         external: true
-#         name: traefik
-#     keycloak:
-#         name: keycloak
-
 services:
     postgres:
-        container_name: postgres
+        container_name: app_db
         image: postgis/postgis:14-3.1-alpine
         volumes:
             - postgres_data:/var/lib/postgresql/data
+            - ./init:/docker-entrypoint-initdb.d
+        ports:
+            - "5432:5432"
         environment:
             POSTGRES_DB: ${POSTGRES_DB}
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     pgweb:
-        container_name: pgweb
+        container_name: pgweb_app
         image: sosedoff/pgweb:0.11.9
-        ports:
-            - "8081:8081"
-        # links:
-        #     - postgres:postgres
+        # ports:
+        #     - "8081:8081"
         environment:
             - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
         depends_on:
             - postgres
-        # networks:
-        #     - traefik
-        # labels:
-        #     - traefik.enable=true
-        #     - traefik.http.routers.pgweb.rule=Host(`pgweb.${DOMAINNAME}`)
-
-    keycloak:
-        image: jboss/keycloak:15.1.0
-        environment:
-            DB_VENDOR: POSTGRES
-            DB_ADDR: postgres
-            DB_DATABASE: ${POSTGRES_DB}
-            DB_USER: ${POSTGRES_USER}
-            DB_SCHEMA: public
-            DB_PASSWORD: ${POSTGRES_PASSWORD}
-            KEYCLOAK_USER: admin
-            KEYCLOAK_PASSWORD: Pa55w0rd
-            # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
-            #JDBC_PARAMS: "ssl=true"
-        ports:
-            - 8082:8080
-        depends_on:
-            - postgres
-        # networks:
-        #     - traefik
-        # labels:
-        #     - traefik.enable=true
-        #     - traefik.http.routers.keycloak.rule=Host(`auth.${DOMAINNAME}`)
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.pgweb-app.entrypoints=https"
+            - "traefik.http.routers.pgweb-app.rule=Host(`pgweb.${DOMAINNAME}`)"
+            - "traefik.http.routers.pgweb-app.tls=true"
+            - "traefik.http.services.pgweb-app.loadbalancer.server.port=8081"
+            - "traefik.docker.network=stonehenge-network"
+        networks:
+            - default
+            - stonehenge-network
 
     graphql-engine:
+        container_name: hasura_app
         image: hasura/graphql-engine:v2.0.9
         # restart: unless-stopped
-        ports:
-            - "8083:8080"
+        # ports:
+        #     - "8083:8080"
         depends_on:
             - postgres
         environment:
@@ -81,12 +58,53 @@ services:
             HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
             ## uncomment next line to set an admin secret
             # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
-        # labels:
-        #     - "traefik.enable=true"
-        #     - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.entrypoints=https"
-        #     - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.rule=Host(`hasura.docker.so`)"
-        #     - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.tls=true"
-        #     - "traefik.http.services.${COMPOSE_PROJECT_NAME}-app.loadbalancer.server.port=8080"
-        #     - "traefik.docker.network=stonehenge-network"
-        # networks:
-        #     - traefik
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.hasura-app.entrypoints=https"
+            - "traefik.http.routers.hasura-app.rule=Host(`hasura.${DOMAINNAME}`)"
+            - "traefik.http.routers.hasura-app.tls=true"
+            - "traefik.http.services.hasura-app.loadbalancer.server.port=8080"
+            - "traefik.docker.network=stonehenge-network"
+        networks:
+            - default
+            - stonehenge-network
+
+    keycloak:
+        container_name: keycloak_app
+        image: jboss/keycloak:15.1.0
+        domainname: ${DOMAINNAME}
+        environment:
+            KEYCLOAK_LOGLEVEL: WARN
+            DB_VENDOR: POSTGRES
+            DB_ADDR: postgres
+            DB_PORT: 5432
+            DB_DATABASE: keycloak_db
+            DB_USER: keycloak
+            DB_SCHEMA: public
+            DB_PASSWORD: ${POSTGRES_PASSWORD}
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: adminpass
+            # This is required to run keycloak behind traefik
+            PROXY_ADDRESS_FORWARDING: "true"
+            KEYCLOAK_HOSTNAME: auth.${DOMAINNAME}
+            # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+            #JDBC_PARAMS: "ssl=true"
+        # ports:
+        #     - 8082:8080
+        depends_on:
+            - "postgres"
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.keycloak-app.entrypoints=https"
+            - "traefik.http.routers.keycloak-app.rule=Host(`keycloak.${DOMAINNAME}`)"
+            - "traefik.http.routers.keycloak-app.tls=true"
+            - "traefik.http.services.keycloak-app.loadbalancer.server.port=8080"
+            - "traefik.docker.network=stonehenge-network"
+        networks:
+            - default
+            - stonehenge-network
+
+networks:
+    # Network from druidfi/stonehenge
+    stonehenge-network:
+        external: true

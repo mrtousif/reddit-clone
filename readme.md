@@ -14,33 +14,10 @@ Inspired by https://github.com/driescroons/mikro-orm-graphql-example
 
 ## ✨ Installation
 
+0. Local development setup: https://github.com/druidfi/stonehenge
 1. Install dependencies via `pnpm`
-2. Create your docker containers via `docker-compose up -d`
+2. Create your docker containers via `pnpm compose:up`
 3. Load fixtures `pnpm loadFixtures`
 4. Run via `pnpm start` or `pnpm dev`
 
 ---
-
-## ⚡️ Usage
-
-#### Run with Node
-
-Run the regular start command
-
-#### Run with ts-node-dev
-
-Run and watch the application in Typescript.
-
-#### Run with debugger
-
-I've added the launch script for VSCode in the repository. You can start the application by going to the Debug and Run tab and clicking on `Debug Application`
-
-### Migrations
-
-After developing a feature, run the following commands to create a migration from the previous migration schema state:
-
-```
-pnpm mikro-orm schema:drop --run
-pnpm mikro-orm migration:up
-pnpm mikro-orm migration:create
-```
