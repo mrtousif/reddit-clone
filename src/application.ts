@@ -68,7 +68,7 @@ export class Application {
             trustProxy: ["127.0.0.1"],
         });
 
-        this.instance.register(fastifyRedis, { url: config.env.REDIS_HOST });
+        // this.instance.register(fastifyRedis, { url: config.env.REDIS_HOST });
         this.instance.register(fastifySecureSession, {
             cookieName: "my-session-cookie",
             key: fs.readFileSync(path.resolve("secret-key")),
