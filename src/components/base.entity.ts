@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import { randomUUID } from "crypto";
 import { PrimaryKey, Property, Entity, BaseEntity } from "@mikro-orm/core";
 import { Field, ID, ObjectType } from "type-graphql";
 
@@ -6,7 +6,7 @@ import { Field, ID, ObjectType } from "type-graphql";
 export class Base<T extends { id: string }> extends BaseEntity<T, "id"> {
     @Field(() => ID)
     @PrimaryKey({ type: "uuid" })
-    public id: string = crypto.randomUUID();
+    public id: string = randomUUID();
 
     @Field()
     @Property()

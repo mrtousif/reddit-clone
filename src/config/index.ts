@@ -4,7 +4,6 @@ const env = cleanEnv(process.env, {
     NODE_ENV: str({
         choices: ["development", "test", "production", "staging"],
     }),
-    NODE_DEV: bool({ default: false }),
     API_PORT: port({ default: 6000 }),
     VAULT_ADDR: url({ default: "http://127.0.0.1:8200" }),
     DOMAIN: url({ default: "http://localhost" }),

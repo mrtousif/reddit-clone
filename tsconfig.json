@@ -14,7 +14,7 @@
         "allowSyntheticDefaultImports": true,
         // "strictPropertyInitialization": false,
         // "noUnusedLocals": true,
-        "baseUrl": ".",
+        "baseUrl": "./",
         // "typeRoots": ["src/utils/types", "node_modules/@types"],
         "paths": {
             "utils/*": ["./src/utils/*"],
