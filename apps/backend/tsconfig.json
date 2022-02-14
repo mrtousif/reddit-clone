@@ -1,17 +1,7 @@
 {
+    "extends": "tsconfig/api.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2021",
-        "lib": ["es2021"],
-        "sourceMap": true,
-        "declaration": true,
         "outDir": "./dist",
-        "removeComments": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "esModuleInterop": true,
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
         // "strictPropertyInitialization": false,
         // "noUnusedLocals": true,
         "baseUrl": "./",

@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "./base.json",
+    "compilerOptions": {
+      "baseUrl": ".",
+      "declaration": true,
+      "esModuleInterop": true,
+      "module": "commonjs",
+      "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
+      "outDir": "dist",
+      "paths": {
+        "*": ["node_modules/*", "src/types/*"]
+      },
+      "sourceMap": true,
+      "target": "es6"
+    },
+    "include": ["src/**/*"]
+  }
