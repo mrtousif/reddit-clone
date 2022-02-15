@@ -1,5 +1,5 @@
 {
-    "name": "backend",
+    "name": "api",
     "description": "A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL",
     "version": "1.0.0",
     "license": "MIT",
@@ -63,7 +63,7 @@
         "@types/supertest": "^2.0.11",
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
-        "config": "*",
+        "config": "workspace:*",
         "eslint": "^8.2.0",
         "faker": "5.5.3",
         "pino-pretty": "^7.3.0",
@@ -72,6 +72,7 @@
         "ts-node": "^10.4.0",
         "tsc-alias": "1",
         "tsc-watch": "^4.5.0",
+        "tsconfig": "workspace:*",
         "typescript": "^4.4.0"
     },
     "mikro-orm": {
