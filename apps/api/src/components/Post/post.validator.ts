@@ -5,7 +5,7 @@ import { Field, InputType } from "type-graphql";
 export class PostValidator {
     @Field()
     @IsString()
-    public title: string;
+    public title!: string;
 }
 
 export default PostValidator;

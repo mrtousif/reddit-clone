@@ -6,9 +6,9 @@ import { Field, InputType } from "type-graphql";
 export class PublisherValidator {
     @Field()
     @IsString()
-    public name: string;
+    public name!: string;
 
     @Field(() => PublisherType)
     @IsEnum(PublisherType)
-    public type: PublisherType;
+    public type!: PublisherType;
 }

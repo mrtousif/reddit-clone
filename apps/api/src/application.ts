@@ -143,7 +143,7 @@ export class Application {
             this.instance.log.warn("Server is shutting down");
         });
 
-        this.gracefulServer.on(GracefulServer.SHUTDOWN, (error) => {
+        this.gracefulServer.on(GracefulServer.SHUTDOWN, (error: Error) => {
             this.instance.log.error("Server is down because of", error.message);
         });
     }

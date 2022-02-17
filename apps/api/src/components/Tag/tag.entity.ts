@@ -9,7 +9,7 @@ import { Base } from "components/base.entity";
 export class Tag extends Base<Tag> {
     @Field()
     @Property()
-    public name: string;
+    public name!: string;
 
     // @Field(() => [Post])
     // @ManyToMany(() => Post, (b: Post) => b.tags)

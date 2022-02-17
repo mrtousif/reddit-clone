@@ -5,7 +5,7 @@ import { Field, InputType } from "type-graphql";
 class TagValidator {
     @Field()
     @IsString()
-    public name: string;
+    public name!: string;
 }
 
 export default TagValidator;

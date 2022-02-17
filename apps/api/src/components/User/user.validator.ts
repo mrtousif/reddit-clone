@@ -5,20 +5,20 @@ import { Field, InputType } from "type-graphql";
 export class UserValidator {
     @Field()
     @IsString()
-    public name: string;
+    public name!: string;
 
     @Field()
     @IsEmail()
-    public email: string;
+    public email!: string;
 
     @Field()
     @IsString()
-    public password: string;
+    public password!: string;
 
     @Field({ nullable: true })
     @IsPhoneNumber()
     @IsOptional()
-    public phone: string;
+    public phone!: string;
 }
 
 export default UserValidator;

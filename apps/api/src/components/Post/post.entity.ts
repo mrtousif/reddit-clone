@@ -11,11 +11,11 @@ import { Base } from "components/base.entity";
 export class Post extends Base<Post> {
     @Field()
     @Property()
-    public title: string;
+    public title!: string;
 
     @Field(() => User)
     @ManyToOne(() => User, { onDelete: "cascade" })
-    public user: User;
+    public user!: User;
 
     // @Field(() => Publisher, { nullable: true })
     // @ManyToOne(() => Publisher, {
