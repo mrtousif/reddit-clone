@@ -10,11 +10,11 @@ import { Base } from "components/base.entity";
 export class Publisher extends Base<Publisher> {
     @Field()
     @Property()
-    public name: string;
+    public name!: string;
 
     @Field(() => PublisherType)
     @Enum(() => PublisherType)
-    public type: PublisherType;
+    public type!: PublisherType;
 
     // @Field(() => [Post])
     // @OneToMany(() => Post, (b: Post) => b.publisher)

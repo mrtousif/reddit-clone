@@ -19,15 +19,15 @@ import * as argon2 from "argon2";
 export class User extends Base<User> {
     @Field()
     @Property()
-    public name: string;
+    public name!: string;
 
     @Field()
     @Property()
     @Unique()
-    public email: string;
+    public email!: string;
 
     @Property()
-    public password: string;
+    public password!: string;
 
     @Field({ nullable: true })
     @Property({ nullable: true })
