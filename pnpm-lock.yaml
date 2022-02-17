@@ -135,9 +135,9 @@ importers:
       '@typescript-eslint/parser': ^5.3.0
       '@vitejs/plugin-react': ^1.0.7
       config: workspace:*
-      envalid: ^7.2.2
       eslint: ^8.2.0
       graphql: ^16.0.1
+      history: ^5.2.0
       notistack: ^2.0.3
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -155,8 +155,8 @@ importers:
       '@mui/icons-material': 5.4.2_40fc9198f3297cec148e6ca7b8f715e2
       '@mui/material': 5.4.2_6226f8758b5b21b5515ad844c1caeb22
       '@sentry/react': 6.17.8_react@17.0.2
-      envalid: 7.2.2
       graphql: 16.3.0
+      history: 5.2.0
       notistack: 2.0.3_3bffd08b967165f57931a6a4fa352453
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -4426,6 +4426,12 @@ packages:
     resolution: {integrity: sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==}
     engines: {node: '>=8'}
     dev: true
+
+  /history/5.2.0:
+    resolution: {integrity: sha512-uPSF6lAJb3nSePJ43hN3eKj1dTWpN9gMod0ZssbFTIsen+WehTmEadgL+kg78xLJFdRfrrC//SavDzmRVdE+Ig==}
+    dependencies:
+      '@babel/runtime': 7.17.2
+    dev: false
 
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
