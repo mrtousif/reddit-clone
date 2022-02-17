@@ -21,7 +21,7 @@
         "test": "jest",
         "serve": "vite preview",
         "format": "prettier --write --ignore-unknown .",
-        "lint": "eslint",
+        "lint": "eslint src/**/*.ts",
         "analyze": "source-map-explorer 'dist/assets/*.js'"
     },
     "dependencies": {
@@ -37,7 +37,6 @@
         "react-dom": "^17.0.2",
         "react-error-boundary": "^3.1.4",
         "react-location": "^3.2.8",
-        "react-wavify": "^1.5.4",
         "urql": "^2.0.5"
     },
     "devDependencies": {

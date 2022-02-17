@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ["alloy", "alloy/typescript", "alloy/react"],
-    ignorePatterns: ["**/migrations/*.ts", "dist/*"],
+    extends: ["alloy", "alloy/typescript", "alloy/react"],
+    ignorePatterns: ["**/migrations/*.ts", "dist/*", "*-env.d.ts"],
     overrides: [
         {
             files: ["*.resolver.ts"],
@@ -10,7 +10,7 @@ module.exports = {
         },
     ],
     plugins: ["prettier"],
-  rules: {
-    "@next/next/no-html-link-for-pages": "off",
-  },
+    rules: {
+        "@next/next/no-html-link-for-pages": "off",
+    },
 };
