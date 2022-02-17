@@ -21,7 +21,7 @@
         "test": "jest",
         "serve": "vite preview",
         "format": "prettier --write --ignore-unknown .",
-        "lint": "eslint --cache ./src",
+        "lint": "eslint",
         "analyze": "source-map-explorer 'dist/assets/*.js'"
     },
     "dependencies": {
