@@ -69,15 +69,15 @@ export class Application {
         });
 
         // this.instance.register(fastifyRedis, { url: config.env.REDIS_HOST });
-        this.instance.register(fastifySecureSession, {
-            cookieName: "my-session-cookie",
-            key: fs.readFileSync(path.resolve("secret-key")),
-            cookie: {
-                path: "/",
-                httpOnly: config.env.isProd, // Use httpOnly for all production purposes
-                // options for setCookie, see https://github.com/fastify/fastify-cookie
-            },
-        });
+        // this.instance.register(fastifySecureSession, {
+        //     cookieName: "my-session-cookie",
+        //     key: fs.readFileSync(path.resolve("secret-key")),
+        //     cookie: {
+        //         path: "/",
+        //         httpOnly: config.env.isProd, // Use httpOnly for all production purposes
+        //         // options for setCookie, see https://github.com/fastify/fastify-cookie
+        //     },
+        // });
         this.instance.register(metricsPlugin, { endpoint: "/metrics" });
         this.instance.register(fastifyRequestContextPlugin, {
             hook: "preValidation",
