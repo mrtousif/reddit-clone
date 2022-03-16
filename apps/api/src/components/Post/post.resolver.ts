@@ -17,7 +17,7 @@ export class PostResolver {
     ): Promise<Post[]> {
         const relationPaths = fieldsToRelations(info, { root: "post" });
 
-        return ctx.em.getRepository(Post).findAll(relationPaths);
+        return ctx.em.getRepository(Post).findAll();
     }
 
     @Query(() => Post, { nullable: true })
@@ -28,7 +28,7 @@ export class PostResolver {
     ): Promise<Post | null> {
         const relationPaths = fieldsToRelations(info, { root: "post" });
 
-        return ctx.em.getRepository(Post).findOne({ id }, relationPaths);
+        return ctx.em.getRepository(Post).findOne({ id });
     }
 
     @Mutation(() => Post)
@@ -67,7 +67,7 @@ export class PostResolver {
         @Info() info: GraphQLResolveInfo
     ): Promise<Post> {
         const relationPaths = fieldsToRelations(info, { root: "post" });
-        const post = await ctx.em.getRepository(Post).findOneOrFail({ id }, relationPaths);
+        const post = await ctx.em.getRepository(Post).findOneOrFail({ id });
         post.assign(input);
 
         await ctx.em.persist(post).flush();

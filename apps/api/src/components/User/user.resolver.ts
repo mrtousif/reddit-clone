@@ -16,7 +16,7 @@ export class UserResolver {
     ): Promise<User[]> {
         const relationPaths = fieldsToRelations(info);
 
-        return ctx.em.getRepository(User).findAll(relationPaths);
+        return ctx.em.getRepository(User).findAll();
     }
 
     @Query(() => User, { nullable: true })
@@ -27,7 +27,7 @@ export class UserResolver {
     ): Promise<User | null> {
         const relationPaths = fieldsToRelations(info);
 
-        return ctx.em.getRepository(User).findOne({ id }, relationPaths);
+        return ctx.em.getRepository(User).findOne({ id });
     }
 
     @Mutation(() => User)
@@ -46,7 +46,7 @@ export class UserResolver {
         @Info() info: GraphQLResolveInfo
     ): Promise<User> {
         const relationPaths = fieldsToRelations(info);
-        const user = await ctx.em.getRepository(User).findOneOrFail({ id }, relationPaths);
+        const user = await ctx.em.getRepository(User).findOneOrFail({ id });
         user.assign(input);
 
         await ctx.em.persist(user).flush();

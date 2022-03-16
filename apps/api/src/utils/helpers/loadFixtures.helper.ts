@@ -4,7 +4,7 @@ import { User } from "components/User/user.entity";
 import { Post } from "components/Post/post.entity";
 import { Publisher } from "components/Publisher/publisher.entity";
 import { Tag } from "components/Tag/tag.entity";
-import * as faker from "faker";
+import { faker } from '@faker-js/faker';
 import createSimpleUuid from "utils/helpers/createSimpleUuid.helper";
 
 export const loadFixtures = async (orm: MikroORM): Promise<void> => {

@@ -5,8 +5,7 @@ import Fastify, { FastifyInstance } from "fastify";
 // plugins
 import mercurius from "mercurius";
 import mercuriusUpload from "mercurius-upload";
-import fastifySecureSession from "fastify-secure-session";
-import fastifyRedis from "fastify-redis";
+import fastifyPrintRoutes from "fastify-print-routes";
 import { fastifyRequestContextPlugin } from "fastify-request-context";
 import prettifier from "@mgcrea/pino-pretty-compact";
 import GracefulServer from "@gquittet/graceful-server";
@@ -22,9 +21,12 @@ import { getContext } from "@/utils/interfaces/context.interface";
 import { PublisherType } from "@/components/Publisher/publisherType.enum";
 import config from "@/config";
 import connectDatabase from "@/connectDatabase";
-import authService from "@/services/auth.service";
 
-const _importDynamic = new Function("modulePath", "return import(modulePath)");
+import { URL } from "url"; // in Browser, the URL in native accessible on window
+
+const __filename = new URL("", import.meta.url).pathname;
+// Will contain trailing slash
+const __dirname = new URL(".", import.meta.url).pathname;
 
 // const __dirname = path.resolve();
 
@@ -68,16 +70,6 @@ export class Application {
             trustProxy: ["127.0.0.1"],
         });
 
-        // this.instance.register(fastifyRedis, { url: config.env.REDIS_HOST });
-        // this.instance.register(fastifySecureSession, {
-        //     cookieName: "my-session-cookie",
-        //     key: fs.readFileSync(path.resolve("secret-key")),
-        //     cookie: {
-        //         path: "/",
-        //         httpOnly: config.env.isProd, // Use httpOnly for all production purposes
-        //         // options for setCookie, see https://github.com/fastify/fastify-cookie
-        //     },
-        // });
         this.instance.register(metricsPlugin, { endpoint: "/metrics" });
         this.instance.register(fastifyRequestContextPlugin, {
             hook: "preValidation",
@@ -85,7 +77,6 @@ export class Application {
                 user: { id: "system" },
             },
         });
-        // this.instance.register(authService);
 
         this.gracefulServer = GracefulServer(this.instance.server);
         this.makeApiGraceful();
@@ -95,7 +86,7 @@ export class Application {
     public async init() {
         await this.initializeGraphql();
         this.orm = await connectDatabase();
-        const fastifyPrintRoutes = await _importDynamic("fastify-print-routes");
+
         this.instance.register(fastifyPrintRoutes);
         this.instance.listen(this.appPort, (error) => {
             if (error) {
@@ -111,6 +102,7 @@ export class Application {
         const schema: GraphQLSchema = await buildSchema({
             resolvers: [`${__dirname}/**/*.resolver.{ts,js}`],
             dateScalarMode: "isoDate",
+            emitSchemaFile: true,
             container: Container,
         });
 
