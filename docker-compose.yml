@@ -68,6 +68,20 @@ services:
         networks:
             - default
             # - stonehenge-network
+        
+    redis:
+        image: redis:7-alpine
+        restart: unless-stopped
+        ports:
+            - "6379:6379"
+    redis_ui:
+        image: patrikx3/p3x-redis-ui:latest
+        restart: unless-stopped
+        ports:
+            - 8083:7843
+        volumes:
+            # here you can set your own /home/user/p3x-redis-ui-settings folder
+            - /home/user/p3x-redis-ui-settings:/settings
 
 
 # networks:
