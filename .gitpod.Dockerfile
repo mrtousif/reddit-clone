@@ -1,7 +1,9 @@
 FROM gitpod/workspace-full
 
 # Install kubectl, k3d, tilt
-RUN brew install kubectl k3d
+RUN brew install kubectl
+
+RUN brew install k3d
 
 RUN k3d cluster create gitpod
 

@@ -39,7 +39,7 @@ services:
             # - stonehenge-network
 
     graphql-engine:
-        container_name: hasura_app
+        container_name: hasura
         image: hasura/graphql-engine:v2.9.0-beta.1
         restart: unless-stopped
         ports:
@@ -71,17 +71,22 @@ services:
         
     redis:
         image: redis:7-alpine
+        hostname: redis
         restart: unless-stopped
         ports:
             - "6379:6379"
-    redis_ui:
-        image: patrikx3/p3x-redis-ui:latest
+    
+    redis-commander:
+        container_name: redis-commander
+        hostname: redis-commander
+        image: ghcr.io/joeferner/redis-commander:latest
         restart: unless-stopped
+        environment:
+            - REDIS_HOSTS=local:redis:6379
         ports:
-            - 8083:7843
-        volumes:
-            # here you can set your own /home/user/p3x-redis-ui-settings folder
-            - /home/user/p3x-redis-ui-settings:/settings
+            - "8083:8081"
+        depends_on:
+            - redis
 
 
 # networks:
