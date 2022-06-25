@@ -3,21 +3,29 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 # and commit this file to your remote git repository to share the goodness with others.
 
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
   - init: |
       docker-compose --env-file ./.env.dev pull 
       pnpm install
       pnpm run build
-  - command: |
-      docker-compose --env-file ./.env.dev up
+
+  - name: Start up infra
+    command: docker-compose --env-file ./.env.dev up
+    
+  - name: Start up applications
+    command: |
+      gp ports await 5432 6379
       pnpm run dev
+      
 ports:
   - port: 5432
     onOpen: ignore
-  - port: 8081
-    onOpen: open-browser
-  - port: 8082
+  - port: 6379
+    onOpen: ignore
+  - port: 8081-8090
     onOpen: open-browser
   - port: 7000-8000
     onOpen: ignore
