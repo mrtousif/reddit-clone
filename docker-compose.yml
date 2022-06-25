@@ -27,16 +27,16 @@ services:
             - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
         depends_on:
             - postgres
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.pgweb-app.entrypoints=https"
-            - "traefik.http.routers.pgweb-app.rule=Host(`pgweb.${DOMAINNAME}`)"
-            - "traefik.http.routers.pgweb-app.tls=true"
-            - "traefik.http.services.pgweb-app.loadbalancer.server.port=8081"
-            - "traefik.docker.network=stonehenge-network"
+        # labels:
+        #     - "traefik.enable=true"
+        #     - "traefik.http.routers.pgweb-app.entrypoints=https"
+        #     - "traefik.http.routers.pgweb-app.rule=Host(`pgweb.${DOMAINNAME}`)"
+        #     - "traefik.http.routers.pgweb-app.tls=true"
+        #     - "traefik.http.services.pgweb-app.loadbalancer.server.port=8081"
+        #     - "traefik.docker.network=stonehenge-network"
         networks:
             - default
-            - stonehenge-network
+            # - stonehenge-network
 
     graphql-engine:
         container_name: hasura_app
@@ -58,19 +58,19 @@ services:
             HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
             ## uncomment next line to set an admin secret
             # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.hasura-app.entrypoints=https"
-            - "traefik.http.routers.hasura-app.rule=Host(`hasura.${DOMAINNAME}`)"
-            - "traefik.http.routers.hasura-app.tls=true"
-            - "traefik.http.services.hasura-app.loadbalancer.server.port=8080"
-            - "traefik.docker.network=stonehenge-network"
+        # labels:
+        #     - "traefik.enable=true"
+        #     - "traefik.http.routers.hasura-app.entrypoints=https"
+        #     - "traefik.http.routers.hasura-app.rule=Host(`hasura.${DOMAINNAME}`)"
+        #     - "traefik.http.routers.hasura-app.tls=true"
+        #     - "traefik.http.services.hasura-app.loadbalancer.server.port=8080"
+        #     - "traefik.docker.network=stonehenge-network"
         networks:
             - default
-            - stonehenge-network
+            # - stonehenge-network
 
 
-networks:
-    # Network from druidfi/stonehenge
-    stonehenge-network:
-        external: true
+# networks:
+#     # Network from druidfi/stonehenge
+#     stonehenge-network:
+#         external: true
