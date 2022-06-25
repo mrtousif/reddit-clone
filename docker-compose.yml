@@ -6,8 +6,8 @@ volumes:
 
 services:
     postgres:
-        container_name: app_db
-        image: postgis/postgis:14-3.1-alpine
+        image: postgis/postgis:14-3.2-alpine
+        restart: unless-stopped
         volumes:
             - postgres_data:/var/lib/postgresql/data
             - ./init:/docker-entrypoint-initdb.d
@@ -19,10 +19,10 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     pgweb:
-        container_name: pgweb_app
-        image: sosedoff/pgweb:0.11.9
-        # ports:
-        #     - "8081:8081"
+        image: sosedoff/pgweb:latest
+        restart: unless-stopped
+        ports:
+            - "8081:8081"
         environment:
             - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
         depends_on:
@@ -40,10 +40,10 @@ services:
 
     graphql-engine:
         container_name: hasura_app
-        image: hasura/graphql-engine:v2.0.9
-        # restart: unless-stopped
-        # ports:
-        #     - "8083:8080"
+        image: hasura/graphql-engine:v2.9.0-beta.1
+        restart: unless-stopped
+        ports:
+            - "8082:8080"
         depends_on:
             - postgres
         environment:
