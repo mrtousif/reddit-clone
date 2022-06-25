@@ -7,8 +7,6 @@ image: gitpod/workspace-full
 
 tasks:
   - init: |
-      brew install kubectl
-      brew install k3d
       docker-compose --env-file ./.env.dev pull 
       pnpm install
       pnpm run build
