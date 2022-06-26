@@ -18,6 +18,8 @@
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
+    "danger": "^11.0.7",
+    "danger-plugin-code-coverage": "^1.1.9",
     "husky": "^7.0.4",
     "prettier": "^2.7.1",
     "turbo": "latest"
