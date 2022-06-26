@@ -1,4 +1,4 @@
-import { message, warn, markdown, danger } from "danger";
+import { message, warn, fail, danger } from "danger";
 
 const modifiedMD = danger.git.modified_files.join("- ");
 
