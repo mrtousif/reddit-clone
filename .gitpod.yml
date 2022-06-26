@@ -8,7 +8,7 @@ image:
 
 tasks:
   - init: |
-      docker-compose --env-file ./.env.dev pull 
+      docker-compose --env-file ./.env.dev pull
       pnpm install
       pnpm run build
 
@@ -25,6 +25,10 @@ ports:
     onOpen: ignore
   - port: 6379
     onOpen: ignore
+  - port: 1025
+    onOpen: ignore
+  - port: 1080
+    onOpen: open-browser
   - port: 8081-8090
     onOpen: open-browser
   - port: 3000-4000
@@ -51,7 +55,7 @@ github:
     # add a check to pull requests (defaults to true)
     addCheck: true
     # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
-    addComment: true
+    addComment: false
     # add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
     # add a label once the prebuild is ready to pull requests (defaults to false)

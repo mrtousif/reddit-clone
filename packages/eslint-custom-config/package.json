@@ -1,16 +1,16 @@
 {
-    "name": "config",
+    "name": "eslint-config-custom",
     "version": "0.0.0",
     "main": "index.js",
     "license": "MIT",
-    "files": [
-        "eslint-preset.js"
-    ],
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "^5.9.0",
         "@typescript-eslint/parser": "^5.9.0",
         "eslint-config-alloy": "^4.4.0",
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.28.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

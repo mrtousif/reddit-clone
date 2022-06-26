@@ -1,21 +1,20 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Api",
     "extends": "./base.json",
     "compilerOptions": {
-        "baseUrl": ".",
-        "declaration": true,
+        "target": "es6",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
         "esModuleInterop": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": true,
-        "outDir": "dist",
-        "paths": {
-            "*": ["node_modules/*", "src/types/*"]
-        },
-        "sourceMap": true,
-        "target": "es6"
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
     },
-    "include": ["src/**/*"]
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }

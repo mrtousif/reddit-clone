@@ -86,6 +86,11 @@ services:
             - "8083:8081"
         depends_on:
             - redis
+    maildev:
+        image: maildev/maildev
+        ports:
+            - "1080:1080"
+            - "1025:1025"
 
 
 # networks:
