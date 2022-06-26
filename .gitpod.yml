@@ -14,12 +14,12 @@ tasks:
 
   - name: Start up infra
     command: docker-compose --env-file ./.env.dev up
-    
+
   - name: Start up applications
     command: |
       gp ports await 5432 6379
       pnpm run dev
-      
+
 ports:
   - port: 5432
     onOpen: ignore
@@ -38,3 +38,4 @@ vscode:
     - esbenp.prettier-vscode
     - zhuangtongfa.material-theme
     - mhutchie.git-graph
+    - rangav.vscode-thunder-client
