@@ -58,6 +58,6 @@ jobs:
               run: pnpm turbo run build --since=origin/${{ github.base_ref }}
 
             - name: Danger
-              uses: danger/danger-js@9.1.6
+              uses: danger/danger-js@11.0.7
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
