@@ -6,7 +6,7 @@ import Fastify, { FastifyInstance } from "fastify";
 import mercurius from "mercurius";
 import mercuriusUpload from "mercurius-upload";
 import fastifyPrintRoutes from "fastify-print-routes";
-import { fastifyRequestContextPlugin } from "fastify-request-context";
+// import { fastifyRequestContextPlugin } from "fastify-request-context";
 import prettifier from "@mgcrea/pino-pretty-compact";
 import GracefulServer from "@gquittet/graceful-server";
 import metricsPlugin from "fastify-metrics";
@@ -71,12 +71,12 @@ export class Application {
         });
 
         this.instance.register(metricsPlugin, { endpoint: "/metrics" });
-        this.instance.register(fastifyRequestContextPlugin, {
-            hook: "preValidation",
-            defaultStoreValues: {
-                user: { id: "system" },
-            },
-        });
+        // this.instance.register(fastifyRequestContextPlugin, {
+        //     hook: "preValidation",
+        //     defaultStoreValues: {
+        //         user: { id: "system" },
+        //     },
+        // });
 
         this.gracefulServer = GracefulServer(this.instance.server);
         this.makeApiGraceful();

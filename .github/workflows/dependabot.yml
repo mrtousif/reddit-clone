@@ -1,17 +1,17 @@
-# name: Dependabot auto-merge
-# on: [push, pull_request]
+name: Dependabot auto-merge
+on: [push, pull_request]
 
-# jobs:
-#     automerge:
-#         needs: build
-#         runs-on: ubuntu-latest
+jobs:
+    automerge:
+        needs: build
+        runs-on: ubuntu-latest
 
-#         permissions:
-#             pull-requests: write
-#             contents: write
+        permissions:
+            pull-requests: write
+            contents: write
 
-#         steps:
-#             - uses: fastify/github-action-merge-dependabot@v3.0.0
-#               with:
-#                   github-token: ${{ secrets.GITHUB_TOKEN }}
-#                   target: patch
+        steps:
+            - uses: fastify/github-action-merge-dependabot@v3.0.0
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  target: patch
