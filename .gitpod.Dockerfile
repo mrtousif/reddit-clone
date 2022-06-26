@@ -1,11 +1,9 @@
 FROM gitpod/workspace-full
 
-RUN pnpm add -g @nestjs/cli nodemon serve kill-port
+RUN npm i --location=global @nestjs/cli tsx serve kill-port
 
 # Install kubectl, k3d, tilt
-RUN brew install fzf kubectl
-
-RUN brew install k3d
+RUN brew install fzf git-secret kubectl k3d
 
 # RUN k3d cluster create gitpod
 
