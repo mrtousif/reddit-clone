@@ -19,7 +19,8 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - uses: gitleaks/gitleaks-action@v2
+            - name: Detect Secrets
+              uses: gitleaks/gitleaks-action@v2
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -40,6 +41,13 @@ jobs:
 
             - name: Install dependencies
               run: pnpm install
+
+            - name: Lint Code Base
+              uses: github/super-linter:slim-v4
+              env:
+                VALIDATE_ALL_CODEBASE: false
+                DEFAULT_BRANCH: main
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Lint, test and build (push)
               if: ${{ github.event_name == 'push' }}
