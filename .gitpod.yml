@@ -8,8 +8,7 @@ image:
 
 tasks:
   - init: |
-      docker-compose --env-file ./.env.dev pull 
-      k3d cluster create gitpod
+      docker-compose --env-file ./.env.dev pull
       pnpm install
       pnpm run build
 
