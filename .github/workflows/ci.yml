@@ -23,14 +23,9 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Danger
-              uses: danger/danger-js@9.1.6
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
             - uses: pnpm/action-setup@v2.0.1
               with:
-                  version: 6
+                  version: 7
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v2
@@ -53,3 +48,8 @@ jobs:
             - name: Lint, test and build (pull request)
               if: ${{ github.event_name == 'pull_request' }}
               run: pnpm turbo run build --since=origin/${{ github.base_ref }}
+
+            - name: Danger
+              uses: danger/danger-js@9.1.6
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
