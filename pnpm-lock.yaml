@@ -4,6 +4,7 @@ importers:
 
   .:
     specifiers:
+      '@babel/plugin-transform-flow-strip-types': ^7.17.12
       '@commitlint/cli': ^16.3.0
       '@commitlint/config-conventional': ^16.2.4
       danger: ^11.0.7
@@ -12,6 +13,7 @@ importers:
       prettier: ^2.7.1
       turbo: latest
     devDependencies:
+      '@babel/plugin-transform-flow-strip-types': 7.17.12
       '@commitlint/cli': 16.3.0
       '@commitlint/config-conventional': 16.2.4
       danger: 11.0.7
@@ -378,6 +380,15 @@ packages:
       '@babel/types': 7.18.4
     dev: true
 
+  /@babel/plugin-syntax-flow/7.17.12:
+    resolution: {integrity: sha512-B8QIgBvkIG6G2jgsOHQUist7Sm0EBLDCx8sen072IwqNuzMegZNXrYnSv77cYzA8mLDZAfQYqsLIhimiP1s2HQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': 7.17.12
+    dev: true
+
   /@babel/plugin-syntax-jsx/7.17.12:
     resolution: {integrity: sha512-spyY3E3AURfxh/RHtjx5j6hs8am5NbUBGfcZ2vB3uShSpZdQyXSf5rR5Mk76vbtlAZOelyVQ71Fg0x9SG4fsog==}
     engines: {node: '>=6.9.0'}
@@ -395,6 +406,16 @@ packages:
     dependencies:
       '@babel/core': 7.18.5
       '@babel/helper-plugin-utils': 7.17.12
+    dev: true
+
+  /@babel/plugin-transform-flow-strip-types/7.17.12:
+    resolution: {integrity: sha512-g8cSNt+cHCpG/uunPQELdq/TeV3eg1OLJYwxypwHtAWo9+nErH3lQx9CSO2uI9lF74A0mR0t4KoMjs1snSgnTw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': 7.17.12
+      '@babel/plugin-syntax-flow': 7.17.12
     dev: true
 
   /@babel/plugin-transform-react-jsx-development/7.16.7_@babel+core@7.18.5:
