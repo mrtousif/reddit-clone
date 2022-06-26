@@ -42,13 +42,6 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
-            - name: Lint Code Base
-              uses: github/super-linter:slim-v4
-              env:
-                VALIDATE_ALL_CODEBASE: false
-                DEFAULT_BRANCH: main
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
             - name: Lint, test and build (push)
               if: ${{ github.event_name == 'push' }}
               run: pnpm turbo run build --since=${{ steps.extract_parent_branch.outputs.parent_branch }}
