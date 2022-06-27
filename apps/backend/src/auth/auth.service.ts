@@ -35,12 +35,12 @@ export interface LoginOrRegisterUserOutput {
     error?: string;
 }
 
-export type HasuraJwtClaims<CustomClaims extends Record<string, string | string[]> = {}> = {
+export interface HasuraJwtClaims<CustomClaims extends Record<string, string | string[]> = {}> {
     "https://hasura.io/jwt/claims": {
         "x-hasura-default-role": string;
         "x-hasura-allowed-roles": string[];
     } & CustomClaims;
-};
+}
 
 export type UserJwtClaims = HasuraJwtClaims<{ "x-hasura-user-id": string }>;
 
