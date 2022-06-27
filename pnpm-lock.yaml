@@ -129,8 +129,10 @@ importers:
       '@nestjs/mercurius': ^10.0.16
       '@nestjs/passport': ^8.2.2
       '@nestjs/platform-fastify': ^8.4.7
+      '@nestjs/schedule': ^2.0.1
       '@nestjs/schematics': ^8.0.0
       '@nestjs/testing': ^8.0.0
+      '@types/cron': ^2.0.0
       '@types/jest': 27.0.2
       '@types/node': ^16.0.0
       '@types/supertest': ^2.0.11
@@ -167,6 +169,8 @@ importers:
       '@nestjs/mercurius': 10.0.16_oxzg35ykrpfzt6qw36duuw72ma
       '@nestjs/passport': 8.2.2_@nestjs+common@8.4.7
       '@nestjs/platform-fastify': 8.4.7_7tsmhnugyerf5okgqzer2mfqme
+      '@nestjs/schedule': 2.0.1_zysgbzrbqurgi5bpxpfkrj3lie
+      '@types/cron': 2.0.0
       dotenv: 16.0.1
       got: 12.1.0
       graphql: 16.5.0
@@ -2216,6 +2220,20 @@ packages:
       - supports-color
     dev: false
 
+  /@nestjs/schedule/2.0.1_zysgbzrbqurgi5bpxpfkrj3lie:
+    resolution: {integrity: sha512-NqiCk3P7HDMw55kpefNIzAAQEsP+6dDIXUt4/KQANtAZ+opdLzo8rkzI0j8vDqgYeTh+PKq+V6zwSRjR61xPAQ==}
+    peerDependencies:
+      '@nestjs/common': ^6.10.11 || ^7.0.0 || ^8.0.0
+      '@nestjs/core': ^7.0.0 || ^8.0.0
+      reflect-metadata: ^0.1.12
+    dependencies:
+      '@nestjs/common': 8.4.7_47vcjb2de6lyibr6g4enoa5lyu
+      '@nestjs/core': 8.4.7_g7av3gvncewo44y4rurz3mgav4
+      cron: 2.0.0
+      reflect-metadata: 0.1.13
+      uuid: 8.3.2
+    dev: false
+
   /@nestjs/schematics/8.0.11_nobats3jkocaued6l3papcxri4:
     resolution: {integrity: sha512-W/WzaxgH5aE01AiIErE9QrQJ73VR/M/8p8pq0LZmjmNcjZqU5kQyOWUxZg13WYfSpJdOa62t6TZRtFDmgZPoIg==}
     peerDependencies:
@@ -2667,6 +2685,13 @@ packages:
       '@types/node': 18.0.0
     dev: false
 
+  /@types/cron/2.0.0:
+    resolution: {integrity: sha512-xZM08fqvwIXgghtPVkSPKNgC+JoMQ2OHazEvyTKnNf7aWu1aB6/4lBbQFrb03Td2cUGG7ITzMv3mFYnMu6xRaQ==}
+    dependencies:
+      '@types/luxon': 2.3.2
+      '@types/node': 18.0.0
+    dev: false
+
   /@types/eslint-scope/3.7.3:
     resolution: {integrity: sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==}
     dependencies:
@@ -2821,6 +2846,10 @@ packages:
       '@types/keygrip': 1.0.2
       '@types/koa-compose': 3.2.5
       '@types/node': 18.0.0
+    dev: false
+
+  /@types/luxon/2.3.2:
+    resolution: {integrity: sha512-WOehptuhKIXukSUUkRgGbj2c997Uv/iUgYgII8U7XLJqq9W2oF0kQ6frEznRQbdurioz+L/cdaIm4GutTQfgmA==}
     dev: false
 
   /@types/mime/1.3.2:
@@ -4279,6 +4308,12 @@ packages:
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
+
+  /cron/2.0.0:
+    resolution: {integrity: sha512-RPeRunBCFr/WEo7WLp8Jnm45F/ziGJiHVvVQEBSDTSGu6uHW49b2FOP2O14DcXlGJRLhwE7TIoDzHHK4KmlL6g==}
+    dependencies:
+      luxon: 1.28.0
+    dev: false
 
   /cross-fetch/3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
@@ -7842,6 +7877,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /luxon/1.28.0:
+    resolution: {integrity: sha512-TfTiyvZhwBYM/7QdAVDh+7dBTBA29v4ik0Ce9zda3Mnf8on1S5KJI8P2jKFZ8+5C0jhmr0KwJEO/Wdpm0VeWJQ==}
+    dev: false
 
   /luxon/2.4.0:
     resolution: {integrity: sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA==}

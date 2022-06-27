@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { MercuriusDriver, MercuriusDriverConfig } from "@nestjs/mercurius";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { EventEmitterModule } from "@nestjs/event-emitter";
+import { ScheduleModule } from "@nestjs/schedule";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
@@ -21,12 +23,15 @@ import { ReportingModule } from "./reporting/reporting.module";
         }),
         SdkModule,
         ItemModule,
+        EmailModule,
+        ReportingModule,
         GraphQLModule.forRoot<MercuriusDriverConfig>({
             driver: MercuriusDriver,
             graphiql: true,
             autoSchemaFile: true,
         }),
-        EmailModule,
+        EventEmitterModule.forRoot(),
+        ScheduleModule.forRoot(),
         HasuraModule.forRootAsync(HasuraModule, {
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => {
@@ -59,7 +64,6 @@ import { ReportingModule } from "./reporting/reporting.module";
                 };
             },
         }),
-        ReportingModule,
     ],
     controllers: [AppController],
     providers: [AppService],

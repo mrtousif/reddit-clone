@@ -6,10 +6,10 @@ config();
 
 const hasuraSchema = z
     .object({
-        HASURA_HOST_PORT: z.string().nonempty(),
-        HASURA_GRAPHQL_ADMIN_SECRET: z.string().nonempty(),
+        HASURA_HOST_PORT: z.string().min(1),
+        HASURA_GRAPHQL_ADMIN_SECRET: z.string().min(1),
     })
-    .nonstrict();
+    .passthrough();
 
 const hasuraConfig = hasuraSchema.parse(process.env);
 
