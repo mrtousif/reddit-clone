@@ -34,6 +34,7 @@
         "@nestjs/platform-fastify": "^8.4.7",
         "@nestjs/schedule": "^2.0.1",
         "@types/cron": "^2.0.0",
+        "argon2": "^0.28.5",
         "dotenv": "^16.0.1",
         "got": "^12.1.0",
         "graphql": "^16.5.0",
