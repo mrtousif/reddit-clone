@@ -2,6 +2,9 @@ import { message, warn, fail, danger } from "danger";
 import prGuide from "danger-plugin-pr-guide";
 import { jsLockfile, commonValidJson, inCommitGrep } from "danger-plugin-toolbox";
 
+import gifs from "danger-plugin-gifs";
+
+prGuide();
 jsLockfile();
 
 commonValidJson();
@@ -10,7 +13,7 @@ if (inCommitGrep(/.+\.log$/)) {
     warn("Do not commit log files");
 }
 
-prGuide();
+gifs();
 
 // const modifiedMD = danger.git.modified_files.join("- ");
 // message("Changed Files in this PR: \n - " + modifiedMD);
