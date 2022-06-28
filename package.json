@@ -21,6 +21,7 @@
     "@commitlint/config-conventional": "^16.2.4",
     "danger": "^11.0.7",
     "danger-plugin-code-coverage": "^1.1.9",
+    "danger-plugin-complete-pr": "^1.0.1",
     "danger-plugin-coverage": "^1.6.2",
     "danger-plugin-node-dependencies": "^0.0.2",
     "eslint-config-custom": "workspace:*",

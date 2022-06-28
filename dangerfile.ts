@@ -1,6 +1,7 @@
 import { message, warn, fail, danger, schedule } from "danger";
 import coverage from "danger-plugin-coverage";
 import { warnDependencies } from "danger-plugin-node-dependencies";
+import * as completePr from "danger-plugin-complete-pr";
 
 schedule(coverage());
 warnDependencies();
@@ -23,9 +24,12 @@ if (packageChanged && !lockfileChanged) {
     warn(`${message} - <i>${idea}</i>`);
 }
 
-const pr = danger.github.pr;
-if (pr.assignee === null) {
-    fail(
-        "Please assign someone to merge this PR, and optionally include people who should review."
-    );
-}
+// const pr = danger.github.pr;
+// if (pr.assignee === null) {
+//     fail(
+//         "Please assign someone to merge this PR, and optionally include people who should review."
+//     );
+// }
+completePr.checkAssignees();
+completePr.checkDescription(10);
+completePr.checkTitle(/^[[A-Za-z]+-\d+]/);
