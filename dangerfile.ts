@@ -1,4 +1,4 @@
-import { message, warn, fail, danger, schedule } from "danger";
+import { warn, fail, danger, schedule } from "danger";
 import coverage from "danger-plugin-coverage";
 import { warnDependencies } from "danger-plugin-node-dependencies";
 import * as completePr from "danger-plugin-complete-pr";
@@ -6,8 +6,8 @@ import * as completePr from "danger-plugin-complete-pr";
 schedule(coverage());
 warnDependencies();
 
-const modifiedMD = danger.git.modified_files.join("- ");
-message("Changed Files in this PR: \n - " + modifiedMD);
+// const modifiedMD = danger.git.modified_files.join("- ");
+// message("Changed Files in this PR: \n - " + modifiedMD);
 
 const bigPRThreshold = 600;
 if (danger.github.pr.additions + danger.github.pr.deletions > bigPRThreshold) {
