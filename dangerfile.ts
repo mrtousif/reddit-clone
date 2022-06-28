@@ -1,9 +1,6 @@
 import { message, warn, fail, danger, schedule } from "danger";
-import prGuide from "danger-plugin-pr-guide";
 import coverage from "danger-plugin-coverage";
 import { warnDependencies } from "danger-plugin-node-dependencies";
-
-prGuide();
 
 schedule(coverage());
 warnDependencies();

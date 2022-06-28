@@ -23,7 +23,6 @@
     "danger-plugin-code-coverage": "^1.1.9",
     "danger-plugin-coverage": "^1.6.2",
     "danger-plugin-node-dependencies": "^0.0.2",
-    "danger-plugin-pr-guide": "0.0.0-development",
     "eslint-config-custom": "workspace:*",
     "husky": "^7.0.4",
     "prettier": "^2.7.1",
