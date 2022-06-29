@@ -50,9 +50,9 @@ jobs:
 
             - name: Lint, test and build (pull request)
               if: ${{ github.event_name == 'pull_request' }}
-              run: pnpm turbo run build --since=origin/${{ github.base_ref }}
+              run: pnpm turbo run build --filter=[HEAD^1]
 
             - name: Danger
-              uses: danger/danger-js@11.0.7
+              run: pnpm danger ci
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
