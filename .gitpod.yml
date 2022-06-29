@@ -9,7 +9,6 @@ image:
 tasks:
   - init: |
       docker-compose --env-file ./.env.dev pull
-      kind create cluster
       pnpm install
       pnpm run build
 
