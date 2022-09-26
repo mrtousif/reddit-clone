@@ -20,7 +20,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Detect Secrets
-              uses: trufflesecurity/trufflehog@v3.11.0
+              uses: trufflesecurity/trufflehog@v3.12.1
               with:
                 path: ./
                 base: ${{ github.event.repository.default_branch }}
